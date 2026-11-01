@@ -170,6 +170,7 @@ void findRoundRobin(vector<Process> processes, int quantum) {
                     break;
                 }
             }
+            continue;
         }
 
         int idx = readyQueue.front();
