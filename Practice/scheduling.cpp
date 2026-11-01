@@ -117,11 +117,11 @@ void SJF(std::vector<Process> &processes)
 
         if (shortestIdx != -1)
         {
-            processes[shortestIdx].completionTime = currentTime + processes[shortestIdx].burstTime;
+            currentTime += processes[shortestIdx].burstTime;
+            processes[shortestIdx].completionTime = currentTime;
             processes[shortestIdx].turnaroundTime = processes[shortestIdx].completionTime - processes[shortestIdx].arrivalTime;
             processes[shortestIdx].waitingTime = processes[shortestIdx].turnaroundTime - processes[shortestIdx].burstTime;
 
-            currentTime = processes[shortestIdx].completionTime;
             isCompleted[shortestIdx] = true;
             completed++;
         }
@@ -170,7 +170,7 @@ void SRTF(std::vector<Process> &processes)
             }
         }
 
-        if (!check)
+        if (check == false)
         {
             currentTime++;
             continue;
